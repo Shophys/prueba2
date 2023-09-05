@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head">
+</head>
+
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<h4 class="card-tittle">
+					<a class="btn btn-success" th:href="@{/form}">Crear Libro</a>
+				</h4>
+			</div>
+			<table class="table  table-striped">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>titulo</th>
+						<th>fechaCreacion</th>
+						<th>numeroPaginas</th>
+						<th>autor</th>
+						<th>fechaNacimiento</th>
+						<th>ciudadNacimiento</th>
+						<th>email</th>
+						<th>editar</th>
+						<th>eliminar</th>
+						<th>foto</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="cliente: ${clientes}">
+						<td th:text="${cliente.id}"></td>
+						<td th:text="${cliente.titulo}"></td>
+						<td th:text="${cliente.fechaCreacion}"></td>
+						<td th:text="${cliente.numeroPaginas}"></td>
+						<td th:text="${cliente.autor}"></td>
+						<td th:text="${cliente.createAt}"></td>
+						<td th:text="${cliente.ciudadNacimiento}"></td>
+						<td th:text="${cliente.email}"></td>
+						<td th:text="${cliente.foto}"></td>
+						<td><a class="btn btn-primary" th:href="@{/form/} + ${cliente.id}" th:text="'editar'"></a></td>
+						<td><a class="btn btn-danger" th:href="@{/eliminar/} + ${cliente.id}" th:text="'eliminar'"
+								onclick="return confirm('Estás seguro de Eliminar?')"></a></td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<footer th:replace="layout/layout :: footer"></footer>
+	</div>
+</body>
+
+</html>

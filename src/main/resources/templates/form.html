@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head">
+</head>
+
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body"></div>
+
+
+			<div th:object="${cliente}" th:remove="tag">
+				<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+					<li th:each="error: ${#fields.errors('*')}" th:text="${error}"></li>
+				</ul>
+			</div>
+			<form th:action="@{/form}" th:object="${cliente}" method="post" enctype="multipart/form-data">
+				<div class="form-group row">
+					<label>Titulo</label>
+					<input type="text" th:field="*{titulo}" />
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"
+						)></small>
+				</div>
+				<div class="form-group row">
+					<label>FechaCreacion</label>
+					<input type="text" th:field="*{fechaCreacion}" />
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('fechaCreacion')}"
+						th:errors="*{fechaCreacion}"></small>
+				</div>
+				<div class="form-group row">
+					<label>Genero</label>
+					<input type="text" th:field="*{genero}" />
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('genero')}"
+						th:errors="*{genero}"></small>
+				</div>
+				<div class="form-group row">
+					<label>NumeroPaginas</label>
+					<input type="text" th:field="*{numeroPaginas}" />
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('numeroPaginas')}"
+						th:errors="*{numeroPaginas}"></small>
+				</div>
+				<div class="form-group row">
+					<label>Autor</label>
+					<input type="text" th:field="*{autor}" />
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('autor')}"
+						th:errors="*{autor}"></small>
+				</div>
+				<div class="form-group row">
+					<label>Email</label>
+					<input type="text" th:field="*{email}" />
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('email')}"
+						th:errors="*{email}"></small>
+				</div>
+				<div class="form-group row">
+					<label>FechaNacimiento</label>
+					<input type="text" th:field="*{createAt}" />
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('createAt')}"
+						th:errors="*{createAt}"></small>
+				</div>
+				<div class="form-group row">
+					<label>CiudadNacimiento</label>
+					<input type="text" th:field="*{ciudadNacimiento}" />
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('ciudadNacimiento')}"
+						th:errors="*{ciudadNacimiento}"></small>
+				</div>
+				<div class="form-group row">
+					<label for="file">Foto</label>
+					<input type="file" name="file" class="form-control" />
+				</div>
+				<div class="form-group row">
+					<input type="submit" value="Crear Libro" />
+				</div>
+			</form>
+		</div>
+		<footer th:replace="layout/layout :: footer"></footer>
+	</div>
+</body>
+
+</html>
